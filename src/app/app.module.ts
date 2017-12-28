@@ -9,6 +9,10 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PicnicComponent } from './picnic/picnic.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { ParkenService } from './services/parken.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { RestoService } from './services/resto.service';
 
 
 @NgModule({
@@ -28,12 +32,12 @@ import { FeedbackComponent } from './feedback/feedback.component';
       {path: 'picnic',component: PicnicComponent},
       {path: 'restaurant',component: RestaurantComponent},
       {path: 'feedback',component: FeedbackComponent}
-      
-
-    ])
+    ],{useHash:true}),
+    FormsModule,
+    HttpClientModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [],
+  providers: [ParkenService, RestoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
