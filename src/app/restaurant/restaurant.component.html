@@ -1,3 +1,63 @@
-<p>
-  
-</p>
+<div class="container">
+    <div class="col-9" *ngIf="showSearchForm && showShow">
+        <br>
+        <br>
+        <div class="md-form">
+            <span class="float-right"><i class="fa fa-close" (click)="showSearchForm=false;"></i></span>
+
+            <input mdbActive type="text" id="form1" class="form-control" (keyup)="onNameKeyUp($event)">
+            <label for="form1" class="">Enter Search:</label>
+            <button type="button" class="btn btn-primary waves-light float-right" (click)="showAll();" mdbRippleRadius>
+                <i class="fa fa-database" aria-hidden="true"></i> Show all</button>
+            <button type="button" class="btn btn-primary waves-light" (click)="searchDistrict();" mdbRippleRadius>
+                <i class="fa fa-search" aria-hidden="true"></i> Search by district</button>
+            <button type="button" class="btn btn-primary waves-light" (click)="searchPostal();" mdbRippleRadius>
+                <i class="fa fa-search" aria-hidden="true"></i> Search by postal code</button>
+            <br>
+        </div>
+    </div>
+
+    <div class="col-6" *ngIf="!showSearchForm && showShow">
+        <div class="md-form">
+            <button type="button" class="btn btn-primary waves-light" (click)="showAll();" mdbRippleRadius>
+                <i class="fa fa-database" aria-hidden="true"></i> Show all</button>
+        </div>
+    </div>
+
+    <div class="col-6" *ngIf="!showShow">
+        <div class="md-form">
+            <button type="button" class="btn btn-primary waves-light" (click)="newSearch();" mdbRippleRadius>
+                <i class="fa fa-recycle" aria-hidden="true"></i>New Search</button>
+        </div>
+    </div>
+<br>
+    <div class="col-9" *ngIf="showTable">
+        <div class="card">
+            <div class="card-header">
+                {{ tableTitle }}
+                <br>
+            </div>
+        
+        <div class="card-block">
+
+            <table class="table table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th>naam</th>
+                        <th>straat</th>
+                        <th>district</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let h of horecaBuurten.data" (click)="zegShit(h)">
+                        
+                        <td>{{h.naam}}</td>
+                        <td>{{h.straatnaam}}</td>
+                        <td>{{h.district }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</div>

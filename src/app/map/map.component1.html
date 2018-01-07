@@ -1,0 +1,8 @@
+<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]=13 [minZoom]=8 [maxZoom]=20 (mapClick)="onChooseLocation($event)">
+  <agm-marker [latitude]="latitude" [longitude]="longitude" *ngIf="locationChosen">
+      <agm-info-window>lat: {{ this.latitude }}, long: {{ this.longitude }}</agm-info-window>
+  </agm-marker>
+  <!--<agm-polyline *ngFor="let x in _MultiLineStrings" [paths]="x"></agm-polyline>-->
+  <agm-polyline></agm-polyline>
+
+</agm-map>

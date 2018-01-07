@@ -1,3 +1,29 @@
-<p>
-  feedback works!
-</p>
+
+<h1>vertel ons wat u vond over onze website</h1>
+<br>
+
+<button type="button" class="btn btn-success waves-light" (click)=" setLogo(0);style.show();" mdbRippleRadius>perfect!</button>
+<button type="button" class="btn btn-warning waves-light" (click)=" setLogo(1);style.show();" mdbRippleRadius>middelmatig...</button>
+<button type="button" class="btn btn-danger waves-light" (click)=" setLogo(2);style.show();" mdbRippleRadius> slecht :( </button>
+
+<div mdbModal #style="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-success" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="heading lead">bedankt!</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="style.hide()">
+                    <span aria-hidden="true" class="white-text">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                    <img id="image" [src]="logo" alt="">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>surf verder</a>
+            </div>
+        </div>
+    </div>
+</div>

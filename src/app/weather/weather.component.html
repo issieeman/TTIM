@@ -1,0 +1,21 @@
+<div class="card" *ngIf="data">
+  <input type="text" class="form-control" [(ngModel)]="Search">
+<div class="card-header">{{data.location | uppercase}}
+  <img class="pull-right" width="50px;" *ngIf="data.icon" src="http://openweathermap.org/img/w/{{data.icon}}.png">
+</div>
+
+<div class="card-block">
+  <ul class="list-group">
+    <li class="list-group-item">Momenteel:
+      <strong>{{data.description}}</strong>
+    </li>
+    <li class="list-group-item" *ngIf="data.temperature">Temperatuur:
+      <strong>{{data.temperature | number:'1.1-1'}}</strong>
+    </li>
+    <li class="list-group-item">
+      <i class="fa fa-sun-o"></i> {{data.sunrise | date:'HH:mm' }}</li>
+    <li class="list-group-item">
+      <i class="fa fa-moon-o"></i> {{data.sunset | date:'HH:mm'}}</li>
+  </ul>
+</div>
+</div>

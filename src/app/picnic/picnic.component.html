@@ -1,119 +1,72 @@
 <div class="container">
-    <div class="col-6" *ngIf="parken">
-            <br><br>
+    <div class="col-9" *ngIf="showSearchForm && showShow">
+        <br>
+        <br>
         <div class="md-form">
-                <input mdbActive type="text" id="form1" class="form-control" (keyup)="onNameKeyUp($event)">
-                <label for="form1" class="">Enter Search:</label>
-                <button type="button" class="btn btn-primary waves-light" (click)="searchDistrict()" mdbRippleRadius>Search by district</button>
-                <button type="button" class="btn btn-primary waves-light" (click)="searchPostal()" mdbRippleRadius>Search by postal code</button>
-                
-                <br>
+            <span class="float-right"><i class="fa fa-close" (click)="showSearchForm=false;"></i></span>
+
+            <input mdbActive type="text" id="form1" class="form-control" (keyup)="onNameKeyUp($event)">
+            <label for="form1" class="">Enter Search:</label>
+            <button type="button" class="btn btn-primary waves-light float-right" (click)="showAll()" mdbRippleRadius>
+                <i class="fa fa-database" aria-hidden="true"></i> Show all</button>
+            <button type="button" class="btn btn-primary waves-light" (click)="searchDistrict()" mdbRippleRadius>
+                <i class="fa fa-search" aria-hidden="true"></i> Search by district</button>
+            <button type="button" class="btn btn-primary waves-light" (click)="searchPostal()" mdbRippleRadius>
+                <i class="fa fa-search" aria-hidden="true"></i> Search by postal code</button>
+            <br>
 
         </div>
-    </div>  
+    </div>
+    <div class="col-6" *ngIf="!showSearchForm && showShow">
+        <div class="md-form">
+            <button type="button" class="btn btn-primary waves-light" (click)="showAll()" mdbRippleRadius>
+                <a href="#restaurant"></a>
+                <i class="fa fa-database" aria-hidden="true"></i> Show all</button>
+        </div>
+    </div>
+    <div class="col-6" *ngIf="!showShow">
+            <div class="md-form">
+                <button type="button" class="btn btn-primary waves-light" (click)="newSearch();" mdbRippleRadius>
+                    <i class="fa fa-recycle" aria-hidden="true"></i>New Search</button>
+            </div>
+        </div>
+    <br>
+    <div class="col-9 weer">
+        <app-weather></app-weather>
+    </div>
+    <br>
+    <p>
+            or find local restaurant
+            <a href="#restaurant"> here </a>
+    </p>
+    
+    <br>
 
     <div class="col-9" *ngIf="showTable">
-            <div class="card" >
-                    <div class="card-header">
-                        {{ tableTitle }}
-                    <br>
-                    
-                    </div>
-                    <div class="card-block">
-                        <table class="table table-hover">
-                            <!--    export interface IDatum {
-              id: number;
-              objectid: number;
-              geometry: string;
-              geometry2: Igeometry;
-              straat: string;
-              district: string;
-              postcode: string;
-              type: string;
-              cluster: string;
-              naam: string;
-              gisid: string;
-            }   
-        //make tableheads sortable
-        -->
-            
-                            <thead>
-                                <tr>
-                                    <th>id</th>
-                                    <th>naam</th>
-                                    <th>straat</th>
-                                    <th>district</th>
-                                    <th>geometry2</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let park of parken.data">
-                                    <td>{{park.id}}</td>
-                                    <td>{{park.naam}}</td>
-                                    <td>{{park.straat}}</td>
-                                    <td>{{park.district }}</td>
-                                    <td>{{ park.geometry2.type }}</td>
-                                    <!--<td>
-                                        3.1.6.  Polygon
+        <div class="card">
+            <div class="card-header">
+                {{ tableTitle }}
+                <br>
 
-   To specify a constraint specific to Polygons, it is useful to
-   introduce the concept of a linear ring:
-
-   o  A linear ring is a closed LineString with four or more positions.
-
-   o  The first and last positions are equivalent, and they MUST contain
-      identical values; their representation SHOULD also be identical.
-
-   o  A linear ring is the boundary of a surface or the boundary of a
-      hole in a surface.
-
-   o  A linear ring MUST follow the right-hand rule with respect to the
-      area it bounds, i.e., exterior rings are counterclockwise, and
-      holes are clockwise.
-
-   Note: the [GJ2008] specification did not discuss linear ring winding
-   order.  For backwards compatibility, parsers SHOULD NOT reject
-   Polygons that do not follow the right-hand rule.
-
-   Though a linear ring is not explicitly represented as a GeoJSON
-   geometry type, it leads to a canonical formulation of the Polygon
-   geometry type definition as follows:
-
-   o  For type "Polygon", the "coordinates" member MUST be an array of
-      linear ring coordinate arrays.
-
-   o  For Polygons with more than one of these rings, the first MUST be
-      the exterior ring, and any others MUST be interior rings.  The
-      exterior ring bounds the surface, and the interior rings (if
-      present) bound holes within the surface.
-                                        <p> {{park.geometry2.coordinates[park.id-1][0][0]}} <br>
-                                            {{park.geometry2.coordinates[park.id-1][0][1]}} <br>
-                                            {{park.geometry2.coordinates[park.id][1][0]}} <br>
-                                            {{park.geometry2.coordinates[park.id][1][1]}} <br>
-                                            {{park.geometry2.coordinates[park.id][2][0]}} <br>
-                                            {{park.geometry2.coordinates[park.id][2][1]}} <br>                                
-                                            {{park.geometry2.coordinates[park.id][3][0]}} <br>
-                                            {{park.geometry2.coordinates[park.id][3][1]}} <br>
-                                            {{park.geometry2.coordinates[park.id][4][0]}} <br>
-                                            {{park.geometry2.coordinates[park.id][4][1]}} <br>
-                                            {{park.geometry2.coordinates[park.id][5][0]}} <br>
-                                            {{park.geometry2.coordinates[park.id][5][1]}} <br>
-                                            {{park.geometry2.coordinates[park.id][6][0]}} <br>
-                                            {{park.geometry2.coordinates[park.id][6][1]}} <br>
-                                            {{park.geometry2.coordinates[park.id][7][0]}} <br>
-                                            {{park.geometry2.coordinates[park.id][7][1]}} <br>
-                                            {{park.geometry2.coordinates[park.id][8][0]}} <br>
-                                            {{park.geometry2.coordinates[park.id][8][1]}} <br>
-                                                                            
-            
-                                        </p>
-                                    </td>-->
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                  </div>
+            </div>
+            <div class="card-block">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>naam</th>
+                            <th>straat</th>
+                            <th>district</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let park of parken.data">
+                            <td>{{park.naam}}</td>
+                            <td>{{park.straat}}</td>
+                            <td>{{park.district }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
-
-

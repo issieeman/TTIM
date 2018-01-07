@@ -1,0 +1,11 @@
+/*
+een Homescherm hebben ingedeeld in 2 delen. 
+Op het linkse deel plaats je een foto van jezelf (hoeft geen portret te zijn) of je team.
+Op het rechtse deel geef je een intro (uitleg, handleiding,..) over je project.
+navigatie (dus routing) gebruiken (met een navigatiebalk)
+per teamlid minstens 4 eigen componenten voorzien (het homescherm en de componenten daarop tellen hiervoor niet mee)
+minstens per onderwerp gebruik maken van 1 service (van 'opendata' antwerpen), deze maken dus het hoofd onderwerp(en) van je project
+minstens gebruik maken van 1 (vrij te kiezen) andere service (bv. weerservice, afstandsbepaling,...)
+gebruik maken van alle Angular aspecten tot nu toe gezien (Interpolation, Pipes, Beide directives)
+gebruik maken van minstens 1 extra NPM component (mathjs, lodash,...)
+*/
